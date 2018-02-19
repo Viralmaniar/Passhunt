@@ -1,6 +1,6 @@
 #!/usr/bin/python
 '''
-This tool allows you to search for 
+This tool allows you to search for default credentials for routers, network devices, web applications and more. 
 Author: Viral Maniar 
 Twitter: https://twitter.com/maniarviral
 Github: https://github.com/Viralmaniar
@@ -18,11 +18,12 @@ def logo():
  | |_) / _` / __/ __| |_| | | | | '_ \| __|
  |  __/ (_| \__ \__ \  _  | |_| | | | | |_ 
  |_|   \__,_|___/___/_| |_|\__,_|_| |_|\__|
+	 ***523 vendors, 2084 passwords***
  ░░░░  ███████ ]▄▄▄▄▄▄▄▄          
 █▄█████████████▄█          	      Author: Viral Maniar
 [████████████████████].   	      Twitter: @ManiarViral
- ..◥ ▲ ▲ ▲ ▲ ▲ ▲ ◤..      	     Description: This tool is to search default credentials for routers, network devices, web applications and more. 
-								                   ***523 vendors, 2084 passwords***
+ ..◥ ▲ ▲ ▲ ▲ ▲ ▲ ◤..      	      Description: This tool is to search default credentials for routers, network devices, web applications and more. 
+								  
  '''
 	return logo
 
