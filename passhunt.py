@@ -10,7 +10,7 @@ import os, sys
 import urllib.request
 import io
 import bs4 as bs
-	
+
 def logo():
 	logo = '''
   ____               _   _             _   
@@ -52,7 +52,19 @@ def checkInternetConnection():
 			print('[!] No internet connection...Please connect to the Internet')
 		else:
 			print('[+] Checking Internet connection...')
-						
+
+
+def formatTable(table):
+    text = ''
+    rows = table.find_all('tr')
+    text += '%s\n' % rows[0].text
+
+    for row in rows[1:]:
+        data = row.find_all('td')
+        text += '%s: %s\n' % (data[0].text, data[1].text)
+
+    return text
+
 
 def cmd_vendorSearch():
 
@@ -66,22 +78,22 @@ def cmd_vendorSearch():
 	soup = bs.BeautifulSoup(response, "html.parser")
 	#print(soup.find_all('a'))
 	for links in soup.find_all('table'):
-		print(links.text)
-		
+		print(formatTable(links))
 
-def cmd_openFile():	
+
+def cmd_openFile():
 	path = './vendors.txt'
 	vendors_file = open(path,'r')
 	vendors = vendors_file.read()
 	print(vendors)
-	
+
 cmds = {
 	"1" : cmd_openFile,
 	"2"	: cmd_vendorSearch,
 	"3"	: lambda: sys.exit(0)
 }
 
-		
+
 def main():
 	print (logo())
 	checkInternetConnection()
