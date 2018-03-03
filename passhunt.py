@@ -53,6 +53,16 @@ def checkInternetConnection():
 		else:
 			print('[+] Checking Internet connection...')
 						
+def formatTable(table):
+    text = ''
+    rows = table.find_all('tr')
+    text += '%s\n' % rows[0].text
+
+    for row in rows[1:]:
+        data = row.find_all('td')
+        text += '%s: %s\n' % (data[0].text, data[1].text)
+
+    return text
 
 def cmd_vendorSearch():
 
@@ -67,6 +77,7 @@ def cmd_vendorSearch():
 	#print(soup.find_all('a'))
 	for links in soup.find_all('table'):
 		print(links.text)
+		print(formatTable(links))
 		
 
 def cmd_openFile():	
