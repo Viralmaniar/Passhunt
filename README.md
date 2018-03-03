@@ -2,7 +2,7 @@
 Passhunt is a simple tool for searching of default credentials for network devices, web applications and more. Search through 523 vendors and their 2084 default passwords.
 
 # Screenshot
-![image](https://user-images.githubusercontent.com/3501170/36360984-ac616c14-157c-11e8-8338-b44a04f1d6ff.png)
+![image](https://user-images.githubusercontent.com/3501170/36933533-92b1c136-1f2e-11e8-80b7-b76fbbbfe54b.png)
 
 # How to install?
 <pre>
