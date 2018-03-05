@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #!/usr/bin/python
 '''
 This tool allows you to search for default credentials for routers, network devices, web applications and more. 
@@ -78,7 +79,6 @@ def cmd_vendorSearch():
 	for links in soup.find_all('table'):
 		print(links.text)
 		print(formatTable(links))
-		
 
 def cmd_openFile():	
 	path = './vendors.txt'
@@ -92,7 +92,6 @@ cmds = {
 	"3"	: lambda: sys.exit(0)
 }
 
-		
 def main():
 	print (logo())
 	checkInternetConnection()
