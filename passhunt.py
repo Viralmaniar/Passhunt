@@ -77,7 +77,7 @@ def cmd_vendorSearch():
 	soup = bs.BeautifulSoup(response, "html.parser")
 	#print(soup.find_all('a'))
 	for links in soup.find_all('table'):
-		print(links.text)
+		#print(links.text)
 		print(formatTable(links))
 
 def cmd_openFile():	
