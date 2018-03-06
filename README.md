@@ -14,7 +14,7 @@ python Passhunt.py
 
 # How do I use this?
 - Press 1: This will print the list of supported vendors.
-- Press 2: Enter the vendor name and search for deafult credentials.
+- Press 2: Enter the vendor name and search for default credentials.
 - Press 3: To exit from the program.
 
 # Credit
