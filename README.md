@@ -16,7 +16,7 @@ pip3 (sudo apt-get install python3-pip).
 git clone https://github.com/Viralmaniar/Passhunt.git
 cd Passhunt
 pip3 install -r requirements.txt
-python Passhunt.py
+python3 Passhunt.py
 </pre>
 
 # How do I use this?
