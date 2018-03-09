@@ -7,8 +7,8 @@ Passhunt is a simple tool for searching of default credentials for network devic
 # Pre-requisites
 Make sure you have installed the following:
 <pre>
-Python 3.0 or later.
-pip3 (sudo apt-get install python3-pip).
+- Python 3.0 or later.
+- pip3 (sudo apt-get install python3-pip)
 </pre>
 
 # How to install?
