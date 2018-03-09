@@ -5,7 +5,7 @@ Passhunt is a simple tool for searching of default credentials for network devic
 ![image](https://user-images.githubusercontent.com/3501170/36933533-92b1c136-1f2e-11e8-80b7-b76fbbbfe54b.png)
 
 # Pre-requisites
-Make sure you have installed the following tools:
+Make sure you have installed the following:
 <pre>
 Python 3.0 or later.
 pip3 (sudo apt-get install python3-pip).
