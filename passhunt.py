@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-#!/usr/bin/python
+#!/usr/bin/env python3
 '''
 This tool allows you to search for default credentials for routers, network devices, web applications and more. 
 Author: Viral Maniar 
