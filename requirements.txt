@@ -1,4 +1,2 @@
 requests
 bs4
-ssl
-request
