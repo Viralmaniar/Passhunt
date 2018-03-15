@@ -54,28 +54,65 @@ def search_vendor(vendor):
 	return data
 
 def load_db():
-	with open("rep.json", "r") as database:
+	with open("database.json", "r", encoding="utf-8") as database:
 		data = json.loads(database.read())
 	return data
 
 def update_db():
-	vendors = [vendor.split("\t")[1].replace("\n", "").lower() for vendor in open("vendors.txt")]
+	vendors = [vendor.replace("\n", "").lower() for vendor in open("vendors.txt")]
 	
 	print("[*] Downloading database. Please wait, it may take time. Usually around 5-10 minutes.")
 	data = {}
 	full = len(vendors)
 	totally = 0
-	for vendor in vendors:
-		totally += 1
-		data[vendor] = search_vendor(vendor)
-		sys.stdout.flush()
-		print("\r[*] {0}/{1}".format(totally, full), end="")
 	
-	print("[*] Saving database...")
+	try:
+		for vendor in vendors:
+			totally += 1
+			data[vendor] = search_vendor(vendor)
+			sys.stdout.flush()
+			print("\r[*] {0}/{1}".format(totally, full), end="")
+	except KeyboardInterrupt:
+		print("\n[*] Loaded {}/{} vendors, saving...".format(totally,full))
+		j = json.dumps(data, sort_keys=True, ensure_ascii=False, indent=4)
+		with open("database.json", "w", encoding="utf-8") as db:
+			db.write(j)
+			db.close()
+			print("[*] Done")
+		return
+	
+	print("\n[*] Saving database...")
 	j = json.dumps(data, sort_keys=True, ensure_ascii=False, indent=4)
-	with open('rep.json', 'w') as rep:
-		rep.write(j)
+	with open("database.json", "w", encoding="utf-8") as db:
+		db.write(j)
+		db.close()
 	print("[*] Done")
+	return
+
+def update_vendors():
+	print("[*] Getting vendors...")
+
+	url = "https://cirt.net/passwords"
+	response = requests.get(url).text
+	soup = bs.BeautifulSoup(response, "html.parser")
+	raw_vendors = soup.findAll("table")[0].findAll("a")
+	vendors = [vendor.text for vendor in raw_vendors]
+
+	print("[*] Found {} vendors. Saving...".format(len(vendors)))
+	with open("vendors.txt", "w", encoding="utf-8") as vendors_list:
+		vendors_list.write("\n".join(vendors))
+		vendors_list.close()
+	print("[*] Done")
+
+def print_vendors():
+	vendors = open("vendors.txt", "r", encoding="utf-8")
+	counter = 1
+	for vendor in vendors:
+		formatted = "{}\t{}".format(counter, vendor.replace("\n",""))
+		print(formatted)
+		counter += 1
+
+	vendors.close()
 
 def main():
 	parser = argparse.ArgumentParser(description="")
@@ -84,24 +121,26 @@ def main():
 	parser.add_argument('-v', '--vendor', help = 'Vendor to search', metavar='')
 	parser.add_argument('-l', '--list', help = 'List vendors', action='store_true')
 	parser.add_argument('-u', '--update', help = 'Update local database', action='store_true')
+	parser.add_argument('-U', '--updatevendors', help = 'Update vendor_list.txt', action='store_true')
 	parser.add_argument('-L', '--local', help='Search from local database', action='store_true')
 	
 	args = parser.parse_args()
 	
-	args_list = [args.vendor, args.list, args.update, args.local]
-	
-	if not args.vendor and not args.list and not args.update:
+	if not args.vendor and not args.list and not args.update and not args.updatevendors:
 		print(logo)
 		parser.print_help()
 		exit(1)
 	
 	if args.list:
-		vendors = open("vendors.txt", "r").read()
-		print(vendors)
+		print_vendors()
 		exit(0)
 
 	if args.update:
 		update_db()
+		exit(0)
+
+	if args.updatevendors:
+		update_vendors()
 		exit(0)
 
 	if args.vendor:
